@@ -14,7 +14,7 @@ namespace SDPract1Lib
 
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.Orientation = Orientation.Horizontal;
-            linearLayout.SetPadding(40, 32, 40, 32);
+            linearLayout.SetPadding(32, 32, 32, 32);
             linearLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1f);
             linearLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 

@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\drawable\buttondark.xml" />
+    <None Remove="Resources\drawable\buttonlight.xml" />
+  </ItemGroup>
 </Project>
