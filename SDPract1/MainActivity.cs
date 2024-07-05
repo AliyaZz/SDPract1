@@ -16,8 +16,6 @@ namespace SDPract1
             AddContentView(linearLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent,
           LinearLayout.LayoutParams.MatchParent));
 
-            
-
             SDPract1Lib.Card1Light card1light = new SDPract1Lib.Card1Light(this);
             SDPract1Lib.Card1Dark card1dark = new SDPract1Lib.Card1Dark(this);
             SDPract1Lib.Card2Light card2light = new SDPract1Lib.Card2Light(this);
