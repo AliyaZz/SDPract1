@@ -12,5 +12,6 @@
   <ItemGroup>
     <None Remove="Resources\drawable\buttondark.xml" />
     <None Remove="Resources\drawable\buttonlight.xml" />
+    <None Remove="Resources\drawable\closebutton.svg" />
   </ItemGroup>
 </Project>

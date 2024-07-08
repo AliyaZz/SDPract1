@@ -18,13 +18,13 @@ namespace SDPract1
             linearLayout.SetClipToPadding(false);
             linearLayout.SetClipChildren(false);
 
-            LinearLayout linearLayout2 = new LinearLayout(BaseContext);
-            linearLayout2.SetClipToPadding(false);
-            linearLayout2.SetClipChildren(false);
+            ScrollView scrollView = new ScrollView(BaseContext);
+            scrollView.SetClipToPadding(false);
+            scrollView.SetClipChildren(false);
 
             linearLayout.SetPadding(40, 40, 40, 40);
-
-            AddContentView(linearLayout, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
+            AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
+            scrollView.AddView(linearLayout);
 
             SDPract1Lib.Card1 card1light = new SDPract1Lib.Card1(this, false);
             SDPract1Lib.Card1 card1dark = new SDPract1Lib.Card1(this, true);
@@ -32,6 +32,9 @@ namespace SDPract1
             SDPract1Lib.Card2 card2dark = new SDPract1Lib.Card2(this,true);
             SDPract1Lib.Card3Button card3light = new SDPract1Lib.Card3Button(this, false);
             SDPract1Lib.Card3Button card3dark = new SDPract1Lib.Card3Button(this, true);
+            SDPract1Lib.Card4 card4light = new SDPract1Lib.Card4(this, true);
+            SDPract1Lib.Card4 card4dark = new SDPract1Lib.Card4(this, false);
+            SDPract1Lib.Card5 card5 = new SDPract1Lib.Card5(this);
 
             linearLayout.AddView(card1light);
             linearLayout.AddView(new Space(this)
@@ -60,6 +63,21 @@ namespace SDPract1
                 LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
             });
             linearLayout.AddView(card3dark);
+            linearLayout.AddView(new Space(this)
+            {
+                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+            });
+            linearLayout.AddView(card4light);
+            linearLayout.AddView(new Space(this)
+            {
+                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+            });
+            linearLayout.AddView(card4dark);
+            linearLayout.AddView(new Space(this)
+            {
+                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+            });
+            linearLayout.AddView(card5);
         }
     }
 }
