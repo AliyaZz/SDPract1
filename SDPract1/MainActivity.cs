@@ -40,9 +40,13 @@ namespace SDPract1
             var card6dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true, "Button");
             var card7light = new SDPract1Lib.CardWithHeaderAnd4Titles(this, false);
             var card7dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true);
-            var card8 = new SDPract1Lib.ScrollableCardWithButton(this, true);
+            var card8 = new SDPract1Lib.ScrollableCard(this, "Button");
+            var card9 = new SDPract1Lib.ScrollableCard(this);
+            var button = new SDPract1Lib.JustButton(this, false);
+            var buttonHighlighted = new SDPract1Lib.JustButton(this, true, "Button highlighted");
 
-            var list = new List<View> {card1light, card1dark, card2light, card2dark, card3light, card3dark, card4light, card4dark, card5, card6light, card6dark, card7light, card7dark, card8 };
+            var list = new List<View> {card1light, card1dark, card2light, card2dark, card3light, card3dark, card4light, card4dark, 
+                card5, card6light, card6dark, card7light, card7dark, card8, card9, button, buttonHighlighted};
 
             foreach (var item in list)
             {

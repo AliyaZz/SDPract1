@@ -1,26 +1,28 @@
 ﻿using Android.Widget;
 using Android.Content;
 using Android.Views;
-using Android.OS;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 
 namespace SDPract1Lib
 {
-    public class CardWithHeaderAnd4Titles : LinearLayout
+    public class ScrollableCard : LinearLayout
     {
-        public CardWithHeaderAnd4Titles(Context context, bool isDark, string buttonInput = "Undefined", string headerInput = "Header", string topButtonInput = "Button", 
-            string titleInput1 = "Title", string descriptionInput1 = "Description", 
-            string titleInput2 = "Title", string descriptionInput2 = "Description", 
-            string titleInput3 = "Title", string descriptionInput3 = "Description", 
-            string titleInput4 = "Title", string descriptionInput4 = "Description") : base(context)
+        public ScrollableCard(Context context, string buttonInput = "Undefined", string headerInput = "Header", string topButtonInput = "Button",
+            string titleInput1 = "Title", string subtitleInput1 = "Subtitle",
+            string titleInput2 = "Title", string subtitleInput2 = "Subtitle",
+            string titleInput3 = "Title", string subtitleInput3 = "Subtitle",
+            string titleInput4 = "Title", string subtitleInput4 = "Subtitle",
+            string titleInput5 = "Title", string subtitleInput5 = "Subtitle",
+            string titleInput6 = "Title", string subtitleInput6 = "Subtitle") : base(context)
         {
             Orientation = Orientation.Horizontal;
-            SetPadding(16, 16, 16, 16);
+            SetPadding(16, 34, 16, 16);
+            SetBackgroundResource(Resource.Drawable.backgroundcardlight);
+            Elevation = 40;
 
             var mainLayout = new LinearLayout(context);
             mainLayout.Orientation = Orientation.Vertical;
-            mainLayout.SetPadding(32, 16, 32, 32);
+            mainLayout.SetPadding(32, 16, 32, 50);
             mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             mainLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 
@@ -57,33 +59,37 @@ namespace SDPract1Lib
             headerLayout.AddView(linearLayout);
             headerLayout.AddView(topButtonLayout);
 
-            var titleInputs = new List<string>() { titleInput1, titleInput2, titleInput3, titleInput4};
-            var descriptionInputs = new List<string> {descriptionInput1, descriptionInput2, descriptionInput3, descriptionInput4};
+            mainLayout.AddView(headerLayout);
+
+            var scrollView = new HorizontalScrollView(context);
+
+            var titleInputs = new List<string>() { titleInput1, titleInput2, titleInput3, titleInput4, titleInput5, titleInput6 };
+            var subtitleInputs = new List<string>() { subtitleInput1, subtitleInput2, subtitleInput3, subtitleInput4, subtitleInput5, subtitleInput6 };
 
             var textLayouts = new List<LinearLayout>();
             var imageLayouts = new List<LinearLayout>();
             var titles = new List<TextView>();
-            var descriptions = new List<TextView>();
+            var subtitles = new List<TextView>();
             var blockLayouts = new List<LinearLayout>();
+            var cardLayouts = new List<LinearLayout>();
+            var layoutOfBlockLayouts = new LinearLayout(context);
 
-            var layoutOfTextLayouts = new LinearLayout(context);
-            layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
-            layoutOfTextLayouts.Orientation = Orientation.Vertical;
-
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 textLayouts.Add(new LinearLayout(context)
                 {
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent),
+                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent, 1),
                     Orientation = Orientation.Vertical
                 });
+                textLayouts[i].SetGravity(GravityFlags.CenterVertical);
 
                 imageLayouts.Add(new LinearLayout(context)
                 {
                     Orientation = Orientation.Vertical,
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent, 1)
                 });
                 imageLayouts[i].SetPadding(0, 0, 32, 0);
+                imageLayouts[i].SetGravity(GravityFlags.CenterVertical);
 
                 var imageView = new ImageView(context);
                 imageView.SetImageResource(Resource.Drawable.starblue);
@@ -92,73 +98,69 @@ namespace SDPract1Lib
                 titles.Add(new TextView(context)
                 {
                     Text = titleInputs[i],
-                    TextSize = 16,
-                    Typeface = typeface1
+                    TextSize = 16
                 });
+                titles[i].SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
                 titles[i].SetTextColor(Android.Graphics.Color.Black);
 
-                descriptions.Add(new TextView(context)
+                subtitles.Add(new TextView(context)
                 {
-                    Text = descriptionInputs[i],
+                    Text = subtitleInputs[i],
                     TextSize = 14,
                     Typeface = typeface1
                 });
-                descriptions[i].SetTextColor(Android.Graphics.Color.Gray);
-                descriptions[i].SetPadding(0, 8, 0, 0);
+                subtitles[i].SetTextColor(Android.Graphics.Color.Black);
+                subtitles[i].SetPadding(0, 8, 0, 0);
 
                 textLayouts[i].AddView(titles[i]);
-                textLayouts[i].AddView(descriptions[i]);
+                textLayouts[i].AddView(subtitles[i]);
+
+                cardLayouts.Add(new LinearLayout(context));
+                cardLayouts[i].SetPadding(0, 0, 40, 0);
+                if (i == 5)
+                {
+                    cardLayouts[i].SetPadding(0, 0, 0, 0);
+                }
 
                 blockLayouts.Add(new LinearLayout(context)
                 {
-                    Orientation = Orientation.Horizontal,
+                    Orientation = Orientation.Vertical,
                     LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent)
                 });
-                blockLayouts[i].SetPadding(0, 0, 0, 50);
-                blockLayouts[i].SetGravity(GravityFlags.CenterVertical);
-
-                if (i == 3)
-                {
-                    blockLayouts[i].SetPadding(0, 0, 0, 0);
-                }
+                blockLayouts[i].SetPadding(32, 0, 0, 0);
+                blockLayouts[i].SetMinimumHeight(460);
+                blockLayouts[i].SetMinimumWidth(460);
+                blockLayouts[i].SetBackgroundResource(Resource.Drawable.scrollviewcards);
                 blockLayouts[i].AddView(imageLayouts[i]);
                 blockLayouts[i].AddView(textLayouts[i]);
 
-                layoutOfTextLayouts.AddView(blockLayouts[i]);
+                cardLayouts[i].AddView(blockLayouts[i]);
+
+                layoutOfBlockLayouts.AddView(cardLayouts[i]);
             }
 
-            if (isDark == false)
-            {
-                SetBackgroundResource(Resource.Drawable.backgroundcardlight);
-                Elevation = 40;
-            }
-            else
-            {
-                SetBackgroundResource(Resource.Drawable.backgroundcarddark);
-            }
+            layoutOfBlockLayouts.SetPadding(16, 0, 16, 0);
+            scrollView.AddView(layoutOfBlockLayouts);
 
-            mainLayout.AddView(headerLayout);
-            mainLayout.AddView(layoutOfTextLayouts);
+            mainLayout.AddView(scrollView);
 
             if (buttonInput != "Undefined")
             {
                 var buttonLayout = new LinearLayout(context);
+                buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent, 1);
                 buttonLayout.SetPadding(0, 50, 0, 0);
-                buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+                buttonLayout.Orientation = Orientation.Vertical;
 
                 var button = new Button(context);
                 button.Text = buttonInput;
+                button.SetBackgroundResource(Resource.Drawable.buttons);
                 button.Typeface = typeface1;
                 button.TextSize = 14;
                 button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-                button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-
                 buttonLayout.AddView(button);
+
                 mainLayout.AddView(buttonLayout);
-
-                button.SetBackgroundResource(Resource.Drawable.buttons);
             }
-
             AddView(mainLayout);
         }
     }

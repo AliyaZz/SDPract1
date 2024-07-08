@@ -19,24 +19,24 @@ namespace SDPract1Lib
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcarddark);
             }
-            LinearLayout mainLayout = new LinearLayout(context);
+            var mainLayout = new LinearLayout(context);
             mainLayout.Orientation = Orientation.Horizontal;
             mainLayout.SetPadding(32, 32, 32, 32);
             mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             mainLayout.SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
-            LinearLayout textLayout = new LinearLayout(context);
+            var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
             textLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
 
-            TextView title = new TextView(Context);
+            var title = new TextView(Context);
             title.Text = titleInput;
             title.TextSize = 16;
             title.SetTextColor(Android.Graphics.Color.Black);
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
             title.Typeface = typeface1;
 
-            TextView description = new TextView(Context);
+            var description = new TextView(Context);
             description.Text = descriptionInput;
             description.TextSize = 14;
             description.SetTextColor(Android.Graphics.Color.Gray);
@@ -46,12 +46,12 @@ namespace SDPract1Lib
             textLayout.AddView(title);
             textLayout.AddView(description);
 
-            LinearLayout imageLayout = new LinearLayout(context);
+            var imageLayout = new LinearLayout(context);
             imageLayout.Orientation = Orientation.Vertical;
             imageLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
             imageLayout.SetPadding(0, 0, 32, 0);
 
-            ImageView image = new ImageView(context);
+            var image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
 
             imageLayout.AddView(image);

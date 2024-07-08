@@ -19,18 +19,17 @@ namespace SDPract1Lib
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcarddark);
             }
-
-            LinearLayout mainLayout = new LinearLayout(context);
+            var mainLayout = new LinearLayout(context);
             mainLayout.Orientation = Orientation.Horizontal;
             mainLayout.SetPadding(32, 32, 32, 32);
             mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             mainLayout.SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
-            LinearLayout textLayout = new LinearLayout(context);
+            var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
             textLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
 
-            TextView header = new TextView(Context);
+            var header = new TextView(Context);
             header.Text = headerInput;
             header.TextSize = 20;
             header.SetTextColor(Android.Graphics.Color.Black);
@@ -41,7 +40,7 @@ namespace SDPract1Lib
 
             if (subheaderInput != "Undefined")
             {
-                TextView subheader = new TextView(Context);
+                var subheader = new TextView(Context);
                 subheader.Text = subheaderInput;
                 subheader.TextSize = 14;
                 subheader.SetTextColor(Android.Graphics.Color.Gray);
@@ -52,8 +51,8 @@ namespace SDPract1Lib
                 mainLayout.SetPadding(32, 32, 32, 32);
                 mainLayout.SetGravity(GravityFlags.Top);
             }
-            
-            ImageView image = new ImageView(context);
+
+            var image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
             
             mainLayout.AddView(textLayout);
