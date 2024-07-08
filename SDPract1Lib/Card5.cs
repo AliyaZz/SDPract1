@@ -57,12 +57,9 @@ namespace SDPract1Lib
             linearLayout3.Orientation = Orientation.Horizontal;
             linearLayout3.SetVerticalGravity(GravityFlags.Top);
             linearLayout3.SetHorizontalGravity(GravityFlags.End);
-            //linearLayout3.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
 
             ImageView button = new ImageView(context);
             button.SetBackgroundResource(Resource.Drawable.closebutton);
-            //button.SetMaxHeight(20);
-            //button.SetMaxWidth(20);
             linearLayout3.AddView(button);
 
             linearLayout.AddView(linearLayout2);

@@ -35,6 +35,8 @@ namespace SDPract1
             SDPract1Lib.Card4 card4light = new SDPract1Lib.Card4(this, true);
             SDPract1Lib.Card4 card4dark = new SDPract1Lib.Card4(this, false);
             SDPract1Lib.Card5 card5 = new SDPract1Lib.Card5(this);
+            SDPract1Lib.Card6 card6light = new SDPract1Lib.Card6(this, false);
+            SDPract1Lib.Card6 card6dark = new SDPract1Lib.Card6(this, true);
 
             linearLayout.AddView(card1light);
             linearLayout.AddView(new Space(this)
@@ -78,6 +80,16 @@ namespace SDPract1
                 LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
             });
             linearLayout.AddView(card5);
+            linearLayout.AddView(new Space(this)
+            {
+                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+            });
+            linearLayout.AddView(card6light);
+            linearLayout.AddView(new Space(this)
+            {
+                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+            });
+            linearLayout.AddView(card6dark);
         }
     }
 }

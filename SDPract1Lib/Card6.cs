@@ -1,0 +1,242 @@
+﻿using Android.Widget;
+using Android.Content;
+using Android.Views;
+using Android.OS;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+
+namespace SDPract1Lib
+{
+    public class Card6 : LinearLayout
+    {
+        public Card6(Context context, bool isDark) : base(context)
+        {
+            Orientation = Orientation.Horizontal;
+            SetPadding(16, 16, 16, 16);
+            SetBackgroundResource(Resource.Drawable.backgroundcardlight);
+            Elevation = 40;
+
+            LinearLayout globalLayout = new LinearLayout(context);
+            globalLayout.Orientation = Orientation.Vertical;
+            globalLayout.SetPadding(32, 32, 32, 32);
+            globalLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1f);
+            globalLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
+
+            LinearLayout headerLayout = new LinearLayout(context);
+            headerLayout.Orientation = Orientation.Horizontal;
+            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+
+            TextView header = new TextView(Context);
+            header.Text = "Header";
+            header.TextSize = 20;
+            header.SetTextColor(Android.Graphics.Color.Black);
+            header.SetPadding(0, 0, 0, 0);
+            Android.Graphics.Typeface typeface2 = this.Resources.GetFont(Resource.Font.RobotoBold);
+            header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
+
+            Button closebutton = new Button(context);
+            Android.Graphics.Typeface typeface1 = this.Resources.GetFont(Resource.Font.Roboto);
+            closebutton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
+            closebutton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+            closebutton.Text = "Button";
+            closebutton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
+
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1f);
+            linearLayout.AddView(header);
+
+            headerLayout.AddView(linearLayout);
+            headerLayout.AddView(closebutton);
+
+            LinearLayout layoutOfTextLayouts = new LinearLayout(context);
+            layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            layoutOfTextLayouts.Orientation = Orientation.Vertical;
+
+            LinearLayout textLayout1 = new LinearLayout(context);
+            textLayout1.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            textLayout1.Orientation = Orientation.Vertical;
+
+            LinearLayout textLayout2 = new LinearLayout(context);
+            textLayout2.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            textLayout2.Orientation = Orientation.Vertical;
+
+            LinearLayout textLayout3 = new LinearLayout(context);
+            textLayout3.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            textLayout3.Orientation = Orientation.Vertical;
+
+            LinearLayout textLayout4 = new LinearLayout(context);
+            textLayout4.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            textLayout4.Orientation = Orientation.Vertical;
+
+            LinearLayout imageLayout1 = new LinearLayout(context);
+            imageLayout1.Orientation = Orientation.Vertical;
+            imageLayout1.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+            imageLayout1.SetPadding(0, 0, 32, 0);
+
+            LinearLayout imageLayout2 = new LinearLayout(context);
+            imageLayout2.Orientation = Orientation.Vertical;
+            imageLayout2.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+            imageLayout2.SetPadding(0, 0, 32, 0);
+
+            LinearLayout imageLayout3 = new LinearLayout(context);
+            imageLayout3.Orientation = Orientation.Vertical;
+            imageLayout3.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+            imageLayout3.SetPadding(0, 0, 32, 0);
+
+            LinearLayout imageLayout4 = new LinearLayout(context);
+            imageLayout4.Orientation = Orientation.Vertical;
+            imageLayout4.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+            imageLayout4.SetPadding(0, 0, 32, 0);
+
+            ImageView imageView1 = new ImageView(context);
+            imageView1.SetImageResource(Resource.Drawable.starblue);
+            imageView1.SetMinimumHeight(130);
+            imageView1.SetMinimumWidth(130);
+
+            ImageView imageView2 = new ImageView(context);
+            imageView2.SetImageResource(Resource.Drawable.starblue);
+            imageView2.SetMinimumHeight(130);
+            imageView2.SetMinimumWidth(130);
+
+            ImageView imageView3 = new ImageView(context);
+            imageView3.SetImageResource(Resource.Drawable.starblue);
+            imageView3.SetMinimumHeight(130);
+            imageView3.SetMinimumWidth(130);
+
+            ImageView imageView4 = new ImageView(context);
+            imageView4.SetImageResource(Resource.Drawable.starblue);
+            imageView4.SetMinimumHeight(130);
+            imageView4.SetMinimumWidth(130);
+
+            imageLayout1.AddView(imageView1);
+            imageLayout2.AddView(imageView2);
+            imageLayout3.AddView(imageView3);
+            imageLayout4.AddView(imageView4);
+
+            TextView title1 = new TextView(Context);
+            title1.Text = "Title";
+            title1.TextSize = 16;
+            title1.SetTextColor(Android.Graphics.Color.Black);
+            title1.Typeface = typeface1;
+
+            TextView title2 = new TextView(Context);
+            title2.Text = "Title";
+            title2.TextSize = 16;
+            title2.SetTextColor(Android.Graphics.Color.Black);
+            title2.Typeface = typeface1;
+
+            TextView title3 = new TextView(Context);
+            title3.Text = "Title";
+            title3.TextSize = 16;
+            title3.SetTextColor(Android.Graphics.Color.Black);
+            title3.Typeface = typeface1;
+
+            TextView title4 = new TextView(Context);
+            title4.Text = "Title";
+            title4.TextSize = 16;
+            title4.SetTextColor(Android.Graphics.Color.Black);
+            title4.Typeface = typeface1;
+
+            TextView description1 = new TextView(Context);
+            description1.Text = "Description";
+            description1.TextSize = 14;
+            description1.SetTextColor(Android.Graphics.Color.Gray);
+            description1.SetPadding(0, 8, 0, 0);
+            description1.Typeface = typeface1;
+
+            TextView description2 = new TextView(Context);
+            description2.Text = "Description";
+            description2.TextSize = 14;
+            description2.SetTextColor(Android.Graphics.Color.Gray);
+            description2.SetPadding(0, 8, 0, 0);
+            description2.Typeface = typeface1;
+
+            TextView description3 = new TextView(Context);
+            description3.Text = "Description";
+            description3.TextSize = 14;
+            description3.SetTextColor(Android.Graphics.Color.Gray);
+            description3.SetPadding(0, 8, 0, 0);
+            description3.Typeface = typeface1;
+
+            TextView description4 = new TextView(Context);
+            description4.Text = "Description";
+            description4.TextSize = 14;
+            description4.SetTextColor(Android.Graphics.Color.Gray);
+            description4.SetPadding(0, 8, 0, 0);
+            description4.Typeface = typeface1;
+
+            textLayout1.AddView(title1);
+            textLayout1.AddView(description1);
+
+            textLayout2.AddView(title2);
+            textLayout2.AddView(description2);
+
+            textLayout3.AddView(title3);
+            textLayout3.AddView(description3);
+
+            textLayout4.AddView(title4);
+            textLayout4.AddView(description4);
+
+            LinearLayout blockLayout1 = new LinearLayout(context);
+            blockLayout1.Orientation = Orientation.Horizontal;
+            blockLayout1.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+            blockLayout1.SetPadding(0, 0, 0, 50);
+
+            LinearLayout blockLayout2 = new LinearLayout(context);
+            blockLayout2.Orientation = Orientation.Horizontal;
+            blockLayout2.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+            blockLayout2.SetPadding(0, 0, 0, 50);
+
+            LinearLayout blockLayout3 = new LinearLayout(context);
+            blockLayout3.Orientation = Orientation.Horizontal;
+            blockLayout3.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+            blockLayout3.SetPadding(0, 0, 0, 50);
+
+            LinearLayout blockLayout4 = new LinearLayout(context);
+            blockLayout4.Orientation = Orientation.Horizontal;
+            blockLayout4.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+            blockLayout4.SetPadding(0, 0, 0, 50);
+
+            blockLayout1.AddView(imageLayout1);
+            blockLayout1.AddView(textLayout1);
+
+            blockLayout2.AddView(imageLayout2);
+            blockLayout2.AddView(textLayout2);
+
+            blockLayout3.AddView(imageLayout3);
+            blockLayout3.AddView(textLayout3);
+
+            blockLayout4.AddView(imageLayout4);
+            blockLayout4.AddView(textLayout4);
+
+            layoutOfTextLayouts.AddView(blockLayout1);
+            layoutOfTextLayouts.AddView(blockLayout2);
+            layoutOfTextLayouts.AddView(blockLayout3);
+            layoutOfTextLayouts.AddView(blockLayout4);
+
+            Button button = new Button(context);
+            button.Text = "Button";
+            button.Typeface = typeface1;
+            button.TextSize = 14;
+            button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+
+            if (isDark == false)
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcardlight);
+                Elevation = 40;
+                button.SetBackgroundResource(Resource.Drawable.buttonlight);
+            }
+            else
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcarddark);
+                button.SetBackgroundResource(Resource.Drawable.buttondark);
+            }
+
+            globalLayout.AddView(headerLayout);
+            globalLayout.AddView(layoutOfTextLayouts);
+            globalLayout.AddView(button);
+
+            AddView(globalLayout);
+        }
+    }
+}
