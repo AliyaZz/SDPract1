@@ -7,46 +7,55 @@ using Android.Graphics.Drawables;
 
 namespace SDPract1Lib
 {
-    public class Card6 : LinearLayout
+    public class CardWithHeaderAnd4Titles : LinearLayout
     {
-        public Card6(Context context, bool isDark) : base(context)
+        public CardWithHeaderAnd4Titles(Context context, bool isDark, string buttonInput = "Undefined", string headerInput = "Header", string topButtonInput = "Button", 
+            string titleInput1 = "Title", string descriptionInput1 = "Description", 
+            string titleInput2 = "Title", string descriptionInput2 = "Description", 
+            string titleInput3 = "Title", string descriptionInput3 = "Description", 
+            string titleInput4 = "Title", string descriptionInput4 = "Description") : base(context)
         {
             Orientation = Orientation.Horizontal;
             SetPadding(16, 16, 16, 16);
-            SetBackgroundResource(Resource.Drawable.backgroundcardlight);
-            Elevation = 40;
 
-            LinearLayout globalLayout = new LinearLayout(context);
-            globalLayout.Orientation = Orientation.Vertical;
-            globalLayout.SetPadding(32, 32, 32, 32);
-            globalLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1f);
-            globalLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
+            LinearLayout mainLayout = new LinearLayout(context);
+            mainLayout.Orientation = Orientation.Vertical;
+            mainLayout.SetPadding(32, 16, 32, 32);
+            mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
+            mainLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 
             LinearLayout headerLayout = new LinearLayout(context);
             headerLayout.Orientation = Orientation.Horizontal;
-            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            headerLayout.SetGravity(GravityFlags.Top);
+            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent, 1);
+            headerLayout.SetPadding(0, 0, 16, 0);
 
             TextView header = new TextView(Context);
-            header.Text = "Header";
+            header.Text = headerInput;
             header.TextSize = 20;
             header.SetTextColor(Android.Graphics.Color.Black);
-            header.SetPadding(0, 0, 0, 0);
-            Android.Graphics.Typeface typeface2 = this.Resources.GetFont(Resource.Font.RobotoBold);
+            Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.RobotoBold);
             header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
 
-            Button closebutton = new Button(context);
-            Android.Graphics.Typeface typeface1 = this.Resources.GetFont(Resource.Font.Roboto);
-            closebutton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
-            closebutton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            closebutton.Text = "Button";
-            closebutton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
+            LinearLayout topButtonLayout = new LinearLayout(context);
+            topButtonLayout.SetGravity(GravityFlags.Top | GravityFlags.Right);
+            topButtonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+
+            Button topButton = new Button(context);
+            Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
+            topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
+            topButton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+            topButton.Text = topButtonInput;
+            topButton.Gravity = GravityFlags.Right;
+            topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
+            topButtonLayout.AddView(topButton);
 
             LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1f);
+            linearLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent, 1);
             linearLayout.AddView(header);
 
             headerLayout.AddView(linearLayout);
-            headerLayout.AddView(closebutton);
+            headerLayout.AddView(topButtonLayout);
 
             LinearLayout layoutOfTextLayouts = new LinearLayout(context);
             layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
@@ -90,23 +99,15 @@ namespace SDPract1Lib
 
             ImageView imageView1 = new ImageView(context);
             imageView1.SetImageResource(Resource.Drawable.starblue);
-            imageView1.SetMinimumHeight(130);
-            imageView1.SetMinimumWidth(130);
 
             ImageView imageView2 = new ImageView(context);
             imageView2.SetImageResource(Resource.Drawable.starblue);
-            imageView2.SetMinimumHeight(130);
-            imageView2.SetMinimumWidth(130);
 
             ImageView imageView3 = new ImageView(context);
             imageView3.SetImageResource(Resource.Drawable.starblue);
-            imageView3.SetMinimumHeight(130);
-            imageView3.SetMinimumWidth(130);
 
             ImageView imageView4 = new ImageView(context);
             imageView4.SetImageResource(Resource.Drawable.starblue);
-            imageView4.SetMinimumHeight(130);
-            imageView4.SetMinimumWidth(130);
 
             imageLayout1.AddView(imageView1);
             imageLayout2.AddView(imageView2);
@@ -114,52 +115,52 @@ namespace SDPract1Lib
             imageLayout4.AddView(imageView4);
 
             TextView title1 = new TextView(Context);
-            title1.Text = "Title";
+            title1.Text = titleInput1;
             title1.TextSize = 16;
             title1.SetTextColor(Android.Graphics.Color.Black);
             title1.Typeface = typeface1;
 
             TextView title2 = new TextView(Context);
-            title2.Text = "Title";
+            title2.Text = titleInput2;
             title2.TextSize = 16;
             title2.SetTextColor(Android.Graphics.Color.Black);
             title2.Typeface = typeface1;
 
             TextView title3 = new TextView(Context);
-            title3.Text = "Title";
+            title3.Text = titleInput3;
             title3.TextSize = 16;
             title3.SetTextColor(Android.Graphics.Color.Black);
             title3.Typeface = typeface1;
 
             TextView title4 = new TextView(Context);
-            title4.Text = "Title";
+            title4.Text = titleInput4;
             title4.TextSize = 16;
             title4.SetTextColor(Android.Graphics.Color.Black);
             title4.Typeface = typeface1;
 
             TextView description1 = new TextView(Context);
-            description1.Text = "Description";
+            description1.Text = descriptionInput1;
             description1.TextSize = 14;
             description1.SetTextColor(Android.Graphics.Color.Gray);
             description1.SetPadding(0, 8, 0, 0);
             description1.Typeface = typeface1;
 
             TextView description2 = new TextView(Context);
-            description2.Text = "Description";
+            description2.Text = descriptionInput2;
             description2.TextSize = 14;
             description2.SetTextColor(Android.Graphics.Color.Gray);
             description2.SetPadding(0, 8, 0, 0);
             description2.Typeface = typeface1;
 
             TextView description3 = new TextView(Context);
-            description3.Text = "Description";
+            description3.Text = descriptionInput3;
             description3.TextSize = 14;
             description3.SetTextColor(Android.Graphics.Color.Gray);
             description3.SetPadding(0, 8, 0, 0);
             description3.Typeface = typeface1;
 
             TextView description4 = new TextView(Context);
-            description4.Text = "Description";
+            description4.Text = descriptionInput4;
             description4.TextSize = 14;
             description4.SetTextColor(Android.Graphics.Color.Gray);
             description4.SetPadding(0, 8, 0, 0);
@@ -181,21 +182,24 @@ namespace SDPract1Lib
             blockLayout1.Orientation = Orientation.Horizontal;
             blockLayout1.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
             blockLayout1.SetPadding(0, 0, 0, 50);
+            blockLayout1.SetGravity(GravityFlags.CenterVertical);
 
             LinearLayout blockLayout2 = new LinearLayout(context);
             blockLayout2.Orientation = Orientation.Horizontal;
             blockLayout2.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
             blockLayout2.SetPadding(0, 0, 0, 50);
+            blockLayout2.SetGravity(GravityFlags.CenterVertical);
 
             LinearLayout blockLayout3 = new LinearLayout(context);
             blockLayout3.Orientation = Orientation.Horizontal;
             blockLayout3.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
             blockLayout3.SetPadding(0, 0, 0, 50);
+            blockLayout3.SetGravity(GravityFlags.CenterVertical);
 
             LinearLayout blockLayout4 = new LinearLayout(context);
             blockLayout4.Orientation = Orientation.Horizontal;
             blockLayout4.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
-            blockLayout4.SetPadding(0, 0, 0, 50);
+            blockLayout4.SetGravity(GravityFlags.CenterVertical);
 
             blockLayout1.AddView(imageLayout1);
             blockLayout1.AddView(textLayout1);
@@ -214,29 +218,46 @@ namespace SDPract1Lib
             layoutOfTextLayouts.AddView(blockLayout3);
             layoutOfTextLayouts.AddView(blockLayout4);
 
-            Button button = new Button(context);
-            button.Text = "Button";
-            button.Typeface = typeface1;
-            button.TextSize = 14;
-            button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-
             if (isDark == false)
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcardlight);
                 Elevation = 40;
-                button.SetBackgroundResource(Resource.Drawable.buttonlight);
             }
             else
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcarddark);
-                button.SetBackgroundResource(Resource.Drawable.buttondark);
             }
 
-            globalLayout.AddView(headerLayout);
-            globalLayout.AddView(layoutOfTextLayouts);
-            globalLayout.AddView(button);
+            mainLayout.AddView(headerLayout);
+            mainLayout.AddView(layoutOfTextLayouts);
 
-            AddView(globalLayout);
+            if (buttonInput != "Undefined")
+            {
+                LinearLayout buttonLayout = new LinearLayout(context);
+                buttonLayout.SetPadding(0, 50, 0, 0);
+                buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+
+                Button button = new Button(context);
+                button.Text = buttonInput;
+                button.Typeface = typeface1;
+                button.TextSize = 14;
+                button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+                button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+
+                buttonLayout.AddView(button);
+                mainLayout.AddView(buttonLayout);
+
+                if (isDark == false)
+                {
+                    button.SetBackgroundResource(Resource.Drawable.buttonlight);
+                }
+                else
+                {
+                    button.SetBackgroundResource(Resource.Drawable.buttondark);
+                }
+            }
+
+            AddView(mainLayout);
         }
     }
 }

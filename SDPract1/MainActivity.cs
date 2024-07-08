@@ -1,3 +1,4 @@
+using Android.Views;
 using static Android.Views.ViewGroup;
 
 namespace SDPract1
@@ -26,70 +27,31 @@ namespace SDPract1
             AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
             scrollView.AddView(linearLayout);
 
-            SDPract1Lib.Card1 card1light = new SDPract1Lib.Card1(this, false);
-            SDPract1Lib.Card1 card1dark = new SDPract1Lib.Card1(this, true);
-            SDPract1Lib.Card2 card2light = new SDPract1Lib.Card2(this,false);
-            SDPract1Lib.Card2 card2dark = new SDPract1Lib.Card2(this,true);
-            SDPract1Lib.Card3Button card3light = new SDPract1Lib.Card3Button(this, false);
-            SDPract1Lib.Card3Button card3dark = new SDPract1Lib.Card3Button(this, true);
-            SDPract1Lib.Card4 card4light = new SDPract1Lib.Card4(this, true);
-            SDPract1Lib.Card4 card4dark = new SDPract1Lib.Card4(this, false);
-            SDPract1Lib.Card5 card5 = new SDPract1Lib.Card5(this);
-            SDPract1Lib.Card6 card6light = new SDPract1Lib.Card6(this, false);
-            SDPract1Lib.Card6 card6dark = new SDPract1Lib.Card6(this, true);
+            var card1light = new SDPract1Lib.CardWithHeader(this, false, "Header", "Subheader");
+            var card1dark = new SDPract1Lib.CardWithHeader(this, true, "Header", "Subheader");
+            var card2light = new SDPract1Lib.CardWithHeader(this, false, "Header");
+            var card2dark = new SDPract1Lib.CardWithHeader(this, true, "Header");
+            var card3light = new SDPract1Lib.CardWithHeaderAndButton(this, false);
+            var card3dark = new SDPract1Lib.CardWithHeaderAndButton(this, true);
+            var card4light = new SDPract1Lib.CardWithTitle(this, false);
+            var card4dark = new SDPract1Lib.CardWithTitle(this, true);
+            var card5 = new SDPract1Lib.CardWithTitleAndCloseButton(this);
+            var card6light = new SDPract1Lib.CardWithHeaderAnd4Titles(this, false, "Button");
+            var card6dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true, "Button");
+            var card7light = new SDPract1Lib.CardWithHeaderAnd4Titles(this, false);
+            var card7dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true);
+            var card8 = new SDPract1Lib.ScrollableCardWithButton(this, true);
 
-            linearLayout.AddView(card1light);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
+            var list = new List<View> {card1light, card1dark, card2light, card2dark, card3light, card3dark, card4light, card4dark, card5, card6light, card6dark, card7light, card7dark, card8 };
 
-            linearLayout.AddView(card1dark);
-            linearLayout.AddView(new Space(this)
+            foreach (var item in list)
             {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card2light);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card2dark);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card3light);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card3dark);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card4light);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card4dark);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card5);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card6light);
-            linearLayout.AddView(new Space(this)
-            {
-                LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
-            });
-            linearLayout.AddView(card6dark);
+                linearLayout.AddView(item);
+                linearLayout.AddView(new Space(this)
+                {
+                    LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
+                });
+            }
         }
     }
 }
