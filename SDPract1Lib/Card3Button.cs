@@ -4,13 +4,12 @@ using Android.Views;
 
 namespace SDPract1Lib
 {
-    public class Card3ButtonDark : LinearLayout
+    public class Card3Button : LinearLayout
     {
-        public Card3ButtonDark(Context context) : base(context)
+        public Card3Button(Context context, bool isDark) : base(context)
         {
             Orientation = Orientation.Vertical;
             SetPadding(16, 16, 16, 16);
-            SetBackgroundResource(Resource.Drawable.backgroundcarddark);
 
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.Orientation = Orientation.Horizontal;
@@ -56,7 +55,18 @@ namespace SDPract1Lib
             button.Typeface = typeface2;
             button.TextSize = 14;
             button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            button.SetBackgroundResource(Resource.Drawable.buttondark);
+
+            if (isDark == false)
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcardlight);
+                Elevation = 40;
+                button.SetBackgroundResource(Resource.Drawable.buttonlight);
+            }
+            else
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcarddark);
+                button.SetBackgroundResource(Resource.Drawable.buttondark);
+            }
 
             LinearLayout linearLayout2 = new LinearLayout(context);
             linearLayout2.Orientation = Orientation.Vertical;

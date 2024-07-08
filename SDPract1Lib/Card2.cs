@@ -4,15 +4,21 @@ using Android.Views;
 
 namespace SDPract1Lib
 {
-    public class Card2Light : LinearLayout
+    public class Card2 : LinearLayout
     {
-        public Card2Light(Context context) : base(context)
+        public Card2(Context context, bool isDark) : base(context)
         {
             Orientation = Orientation.Horizontal;
             SetPadding(16, 16, 16, 16);
-            SetBackgroundResource(Resource.Drawable.backgroundcardlight);
-            Elevation = 40;
-
+            if (isDark == false)
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcardlight);
+                Elevation = 40;
+            }
+            else
+            {
+                SetBackgroundResource(Resource.Drawable.backgroundcarddark);
+            }
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.Orientation = Orientation.Horizontal;
             linearLayout.SetPadding(32, 32, 32, 32);

@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Card1Dark.cs" />
+    <Compile Remove="Card2Dark.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Resources\drawable\buttondark.xml" />
     <None Remove="Resources\drawable\buttonlight.xml" />
   </ItemGroup>

@@ -8,9 +8,7 @@ namespace SDPract1
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.activity_main);
-            //SetWallpaper(Android.Graphics.Bitmap())
             ActionBar.Hide();
 
             LinearLayout linearLayout = new LinearLayout(BaseContext)
@@ -26,17 +24,14 @@ namespace SDPract1
 
             linearLayout.SetPadding(40, 40, 40, 40);
 
-            AddContentView(linearLayout, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent)
-            {
+            AddContentView(linearLayout, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
 
-            });
-
-            SDPract1Lib.Card1Light card1light = new SDPract1Lib.Card1Light(this);
-            SDPract1Lib.Card1Dark card1dark = new SDPract1Lib.Card1Dark(this);
-            SDPract1Lib.Card2Light card2light = new SDPract1Lib.Card2Light(this);
-            SDPract1Lib.Card2Dark card2dark = new SDPract1Lib.Card2Dark(this);
-            SDPract1Lib.Card3ButtonLight card3light = new SDPract1Lib.Card3ButtonLight(this);
-            SDPract1Lib.Card3ButtonDark card3dark = new SDPract1Lib.Card3ButtonDark(this);
+            SDPract1Lib.Card1 card1light = new SDPract1Lib.Card1(this, false);
+            SDPract1Lib.Card1 card1dark = new SDPract1Lib.Card1(this, true);
+            SDPract1Lib.Card2 card2light = new SDPract1Lib.Card2(this,false);
+            SDPract1Lib.Card2 card2dark = new SDPract1Lib.Card2(this,true);
+            SDPract1Lib.Card3Button card3light = new SDPract1Lib.Card3Button(this, false);
+            SDPract1Lib.Card3Button card3dark = new SDPract1Lib.Card3Button(this, true);
 
             linearLayout.AddView(card1light);
             linearLayout.AddView(new Space(this)
