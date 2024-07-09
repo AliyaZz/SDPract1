@@ -16,7 +16,7 @@ namespace SDPract1Lib
             string titleInput6 = "Title", string subtitleInput6 = "Subtitle") : base(context)
         {
             Orientation = Orientation.Horizontal;
-            SetPadding(16, 34, 16, 16);
+            SetPadding(16, 16, 16, 16);
             SetBackgroundResource(Resource.Drawable.backgroundcardlight);
             Elevation = 40;
 
@@ -39,10 +39,6 @@ namespace SDPract1Lib
             Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.RobotoBold);
             header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
 
-            var topButtonLayout = new LinearLayout(context);
-            topButtonLayout.SetGravity(GravityFlags.Top | GravityFlags.Right);
-            topButtonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
-
             var topButton = new Button(context);
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
             topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
@@ -50,14 +46,10 @@ namespace SDPract1Lib
             topButton.Text = topButtonInput;
             topButton.Gravity = GravityFlags.Right;
             topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
-            topButtonLayout.AddView(topButton);
+            topButton.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
 
-            var linearLayout = new LinearLayout(context);
-            linearLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent, 1);
-            linearLayout.AddView(header);
-
-            headerLayout.AddView(linearLayout);
-            headerLayout.AddView(topButtonLayout);
+            headerLayout.AddView(header);
+            headerLayout.AddView(topButton);
 
             mainLayout.AddView(headerLayout);
 

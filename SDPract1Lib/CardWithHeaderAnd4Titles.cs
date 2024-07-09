@@ -37,10 +37,6 @@ namespace SDPract1Lib
             Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.RobotoBold);
             header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
 
-            var topButtonLayout = new LinearLayout(context);
-            topButtonLayout.SetGravity(GravityFlags.Top | GravityFlags.Right);
-            topButtonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
-
             var topButton = new Button(context);
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
             topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
@@ -48,14 +44,10 @@ namespace SDPract1Lib
             topButton.Text = topButtonInput;
             topButton.Gravity = GravityFlags.Right;
             topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
-            topButtonLayout.AddView(topButton);
+            topButton.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
 
-            var linearLayout = new LinearLayout(context);
-            linearLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent, 1);
-            linearLayout.AddView(header);
-
-            headerLayout.AddView(linearLayout);
-            headerLayout.AddView(topButtonLayout);
+            headerLayout.AddView(header);
+            headerLayout.AddView(topButton);
 
             var titleInputs = new List<string>() { titleInput1, titleInput2, titleInput3, titleInput4};
             var descriptionInputs = new List<string> {descriptionInput1, descriptionInput2, descriptionInput3, descriptionInput4};
