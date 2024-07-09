@@ -7,13 +7,7 @@ namespace SDPract1Lib
 {
     public class ScrollableCard : LinearLayout
     {
-        public ScrollableCard(Context context, string buttonInput = "Undefined", string headerInput = "Header", string topButtonInput = "Button",
-            string titleInput1 = "Title", string subtitleInput1 = "Subtitle",
-            string titleInput2 = "Title", string subtitleInput2 = "Subtitle",
-            string titleInput3 = "Title", string subtitleInput3 = "Subtitle",
-            string titleInput4 = "Title", string subtitleInput4 = "Subtitle",
-            string titleInput5 = "Title", string subtitleInput5 = "Subtitle",
-            string titleInput6 = "Title", string subtitleInput6 = "Subtitle") : base(context)
+        public ScrollableCard(Context context, string buttonInput = "Undefined", string headerInput = "Header", string topButtonInput = "Button", List<string> titleInputs = default, List<string> subtitleInputs = default) : base(context)
         {
             Orientation = Orientation.Horizontal;
             SetPadding(16, 16, 16, 16);
@@ -54,10 +48,6 @@ namespace SDPract1Lib
             mainLayout.AddView(headerLayout);
 
             var scrollView = new HorizontalScrollView(context);
-
-            var titleInputs = new List<string>() { titleInput1, titleInput2, titleInput3, titleInput4, titleInput5, titleInput6 };
-            var subtitleInputs = new List<string>() { subtitleInput1, subtitleInput2, subtitleInput3, subtitleInput4, subtitleInput5, subtitleInput6 };
-
             var textLayouts = new List<LinearLayout>();
             var imageLayouts = new List<LinearLayout>();
             var titles = new List<TextView>();
@@ -66,7 +56,13 @@ namespace SDPract1Lib
             var cardLayouts = new List<LinearLayout>();
             var layoutOfBlockLayouts = new LinearLayout(context);
 
-            for (int i = 0; i < 6; i++)
+            if (titleInputs == null)
+            {
+                titleInputs = new List<string> { "Title", "Title", "Title", "Title", "Title", "Title" };
+                subtitleInputs = new List<string> { "Subhesader", "Subhesader", "Subhesader", "Subhesader", "Subhesader", "Subhesader" };
+            }
+
+            for (int i = 0; i < titleInputs.Count; i++)
             {
                 textLayouts.Add(new LinearLayout(context)
                 {
