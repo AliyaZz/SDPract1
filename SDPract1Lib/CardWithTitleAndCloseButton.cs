@@ -51,18 +51,23 @@ namespace SDPract1Lib
 
             imageLayout.AddView(image);
 
+            var layoutToMakeButtonHigher = new LinearLayout(context);
+            layoutToMakeButtonHigher.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+            layoutToMakeButtonHigher.SetVerticalGravity(GravityFlags.Top);
+
             var buttonLayout = new LinearLayout(context);
             buttonLayout.Orientation = Orientation.Horizontal;
-            buttonLayout.SetVerticalGravity(GravityFlags.Top);
-            buttonLayout.SetHorizontalGravity(GravityFlags.End);
-
-            var closeButton = new ImageView(context);
+            buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(64, 64);
+            
+            var closeButton = new Button(context);
             closeButton.SetBackgroundResource(Resource.Drawable.closebutton);
             buttonLayout.AddView(closeButton);
 
+            layoutToMakeButtonHigher.AddView(buttonLayout);
+
             mainLayout.AddView(imageLayout);
             mainLayout.AddView(textLayout);
-            mainLayout.AddView(buttonLayout);
+            mainLayout.AddView(layoutToMakeButtonHigher);
 
             AddView(mainLayout);
         }
