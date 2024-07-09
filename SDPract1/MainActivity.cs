@@ -1,4 +1,6 @@
 using Android.Views;
+using SDPract1Lib;
+using static Android.Provider.Settings;
 using static Android.Views.ViewGroup;
 
 namespace SDPract1
@@ -12,14 +14,14 @@ namespace SDPract1
             SetContentView(Resource.Layout.activity_main);
             ActionBar.Hide();
 
-            LinearLayout linearLayout = new LinearLayout(BaseContext)
+            var linearLayout = new LinearLayout(BaseContext)
             {
                 Orientation = Orientation.Vertical
             };
             linearLayout.SetClipToPadding(false);
             linearLayout.SetClipChildren(false);
 
-            ScrollView scrollView = new ScrollView(BaseContext);
+            var scrollView = new ScrollView(BaseContext);
             scrollView.SetClipToPadding(false);
             scrollView.SetClipChildren(false);
 
@@ -27,26 +29,25 @@ namespace SDPract1
             AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
             scrollView.AddView(linearLayout);
 
-            var card1light = new SDPract1Lib.CardWithHeader(this, false, "Header", "Subheader");
-            var card1dark = new SDPract1Lib.CardWithHeader(this, true, "Header", "Subheader");
-            var card2light = new SDPract1Lib.CardWithHeader(this, false, "Header");
-            var card2dark = new SDPract1Lib.CardWithHeader(this, true, "Header");
-            var card3light = new SDPract1Lib.CardWithHeaderAndButton(this, false);
-            var card3dark = new SDPract1Lib.CardWithHeaderAndButton(this, true);
-            var card4light = new SDPract1Lib.CardWithTitle(this, false);
-            var card4dark = new SDPract1Lib.CardWithTitle(this, true);
-            var card5 = new SDPract1Lib.CardWithTitleAndCloseButton(this);
-            var card6light = new SDPract1Lib.CardWithHeaderAnd4Titles(this, false, "Button");
-            var card6dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true, "Button");
-            var card7light = new SDPract1Lib.CardWithHeaderAnd4Titles(this, false);
-            var card7dark = new SDPract1Lib.CardWithHeaderAnd4Titles(this, true);
-            var card8 = new SDPract1Lib.ScrollableCard(this, "Button");
-            var card9 = new SDPract1Lib.ScrollableCard(this);
-            var button = new SDPract1Lib.JustButton(this, false);
-            var buttonHighlighted = new SDPract1Lib.JustButton(this, true, "Button highlighted");
-
-            var list = new List<View> {card1light, card1dark, card2light, card2dark, card3light, card3dark, card4light, card4dark, 
-                card5, card6light, card6dark, card7light, card7dark, card8, card9, button, buttonHighlighted};
+            var list = new List<View> {
+                new CardWithHeader(this, false, "Header", "Subheader"),
+                new CardWithHeader(this, true, "Header", "Subheader"),
+                new CardWithHeader(this, false, "Header", "Subheader"),
+                new CardWithHeader(this, true, "Header", "Subheader"),
+                new CardWithHeaderAndButton(this, false, "Header", "Subheader", "Button"),
+                new CardWithHeaderAndButton(this, true, "Header", "Subheader", "Button"),
+                new CardWithTitle(this, false, "Title", "Description"),
+                new CardWithTitle(this, true, "Title", "Description"),
+                new CardWithTitleAndCloseButton(this, "Title", "Description"),
+                new CardWithHeaderAnd4Titles(this, false, "Button", "Header", new List<string>{}, new List<string>{}, "Button"),
+                new CardWithHeaderAnd4Titles(this, true, "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}, "Button"),
+                new CardWithHeaderAnd4Titles(this, false, "Button", "Header"),
+                new CardWithHeaderAnd4Titles(this, true,  "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}),
+                new ScrollableCard(this, "Button", "Header", new List<string>{}, new List<string>{}, "Button"),
+                new ScrollableCard(this, "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}, "Button"),
+                new JustButton(this, false, "Button"),
+                new JustButton(this, true, "Button highlighted")
+            };
 
             foreach (var item in list)
             {

@@ -6,10 +6,10 @@ namespace SDPract1Lib
 {
     public class CardWithHeader : LinearLayout
     {
-        public CardWithHeader(Context context, bool isDark, string headerInput = "Header", string subheaderInput = "Undefined") : base(context)
+        public CardWithHeader(Context context, bool isDark, string headerInput, string subheaderInput) : base(context)
         {
             Orientation = Orientation.Horizontal;
-            SetPadding(16, 16, 16, 16);
+            SetPadding(48, 48, 48, 48);
             if (isDark == false)
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcardlight);
@@ -19,11 +19,8 @@ namespace SDPract1Lib
             {
                 SetBackgroundResource(Resource.Drawable.backgroundcarddark);
             }
-            var mainLayout = new LinearLayout(context);
-            mainLayout.Orientation = Orientation.Horizontal;
-            mainLayout.SetPadding(32, 32, 32, 32);
-            mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
-            mainLayout.SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
+            LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
+            SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
             var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
@@ -38,7 +35,7 @@ namespace SDPract1Lib
             header.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
             textLayout.AddView(header);
 
-            if (subheaderInput != "Undefined")
+            if (string.IsNullOrEmpty(subheaderInput))
             {
                 var subheader = new TextView(Context);
                 subheader.Text = subheaderInput;
@@ -48,17 +45,13 @@ namespace SDPract1Lib
                 Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.Roboto);
                 textLayout.AddView(subheader);
                 subheader.Typeface = typeface2;
-                mainLayout.SetPadding(32, 32, 32, 32);
-                mainLayout.SetGravity(GravityFlags.Top);
+                SetGravity(GravityFlags.Top);
             }
-
             var image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
             
-            mainLayout.AddView(textLayout);
-            mainLayout.AddView(image);
-
-            AddView(mainLayout);
+            AddView(textLayout);
+            AddView(image);
         }
     }
 }

@@ -7,18 +7,14 @@ namespace SDPract1Lib
 {
     public class CardWithTitleAndCloseButton : LinearLayout
     {
-        public CardWithTitleAndCloseButton(Context context, string titleInput = "Title", string descriptionInput = "Description") : base(context)
+        public CardWithTitleAndCloseButton(Context context, string titleInput, string descriptionInput) : base(context)
         {
             Orientation = Orientation.Horizontal;
-            SetPadding(16, 16, 16, 16);
+            SetPadding(48, 48, 48, 48);
             SetBackgroundResource(Resource.Drawable.backgroundcardlight);
             Elevation = 40;
-
-            var mainLayout = new LinearLayout(context);
-            mainLayout.Orientation = Orientation.Horizontal;
-            mainLayout.SetPadding(32, 32, 32, 32);
-            mainLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
-            mainLayout.SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
+            LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
+            SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
             var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
@@ -65,11 +61,9 @@ namespace SDPract1Lib
 
             layoutToMakeButtonHigher.AddView(buttonLayout);
 
-            mainLayout.AddView(imageLayout);
-            mainLayout.AddView(textLayout);
-            mainLayout.AddView(layoutToMakeButtonHigher);
-
-            AddView(mainLayout);
+            AddView(imageLayout);
+            AddView(textLayout);
+            AddView(layoutToMakeButtonHigher);
         }
     }
 }

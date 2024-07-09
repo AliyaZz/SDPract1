@@ -6,16 +6,13 @@ namespace SDPract1Lib
 {
     public class CardWithHeaderAndButton : LinearLayout
     {
-        public CardWithHeaderAndButton(Context context, bool isDark, string headerInput = "Header", string subheaderInput = "Subheader", string buttonInput = "Button") : base(context)
+        public CardWithHeaderAndButton(Context context, bool isDark, string headerInput, string subheaderInput, string buttonInput) : base(context)
         {
             Orientation = Orientation.Vertical;
-            SetPadding(16, 16, 16, 16);
-
-            var mainTextLayout = new LinearLayout(context);
-            mainTextLayout.Orientation = Orientation.Horizontal;
-            mainTextLayout.SetPadding(32, 32, 32, 0);
-            mainTextLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
-            mainTextLayout.SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
+            SetPadding(48, 48, 48, 16);
+            Orientation = Orientation.Horizontal;
+            LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 
             var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
@@ -43,10 +40,8 @@ namespace SDPract1Lib
             var image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
 
-            mainTextLayout.AddView(textLayout);
-            mainTextLayout.AddView(image);
-
-            AddView(mainTextLayout);
+            AddView(textLayout);
+            AddView(image);
 
             var button = new Button(context);
             button.Text = buttonInput;

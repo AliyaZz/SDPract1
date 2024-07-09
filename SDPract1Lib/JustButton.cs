@@ -7,7 +7,7 @@ namespace SDPract1Lib
 {
     public class JustButton : Button
     {
-        public JustButton(Context context, bool isHighlighted, string buttonInput = "Button") : base(context)
+        public JustButton(Context context, bool isHighlighted, string buttonInput) : base(context)
         {
             Text = buttonInput;
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
