@@ -14,7 +14,6 @@ namespace SDPract1Lib
         {
             SetPadding(48, 32, 48, 48);
             Orientation = Orientation.Vertical;
-            LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 
             var headerLayout = new LinearLayout(context);

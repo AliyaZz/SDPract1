@@ -14,7 +14,6 @@ namespace SDPract1Lib
             SetPadding(48, 32, 48, 66);
             SetBackgroundResource(Resource.Drawable.backgroundcardlight);
             Elevation = 40;
-            LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
 
             var headerLayout = new LinearLayout(context);
@@ -45,6 +44,7 @@ namespace SDPract1Lib
             AddView(headerLayout);
 
             var scrollView = new HorizontalScrollView(context);
+            scrollView.HorizontalScrollBarEnabled = false;
             var textLayouts = new List<LinearLayout>();
             var imageLayouts = new List<LinearLayout>();
             var titles = new List<TextView>();

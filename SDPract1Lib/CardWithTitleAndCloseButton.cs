@@ -13,7 +13,6 @@ namespace SDPract1Lib
             SetPadding(48, 48, 48, 48);
             SetBackgroundResource(Resource.Drawable.backgroundcardlight);
             Elevation = 40;
-            LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
             SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
             var textLayout = new LinearLayout(context);

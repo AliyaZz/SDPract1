@@ -10,9 +10,11 @@ namespace SDPract1Lib
         {
             Orientation = Orientation.Vertical;
             SetPadding(48, 48, 48, 16);
-            Orientation = Orientation.Horizontal;
-            LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
             SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
+
+            var headerLayout = new LinearLayout(context);
+            headerLayout.Orientation = Orientation.Horizontal;
+            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
 
             var textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
@@ -40,14 +42,17 @@ namespace SDPract1Lib
             var image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
 
-            AddView(textLayout);
-            AddView(image);
+            headerLayout.AddView(textLayout);
+            headerLayout.AddView(image);
+
+            AddView(headerLayout);
 
             var button = new Button(context);
             button.Text = buttonInput;
             button.Typeface = typeface2;
             button.TextSize = 14;
             button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+            button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
 
             if (isDark == false)
             {
@@ -63,7 +68,7 @@ namespace SDPract1Lib
 
             var buttonLayout = new LinearLayout(context);
             buttonLayout.Orientation = Orientation.Vertical;
-            buttonLayout.SetPadding(32, 32, 32, 32);
+            buttonLayout.SetPadding(0, 32, 0, 32);
             buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
             buttonLayout.SetGravity(GravityFlags.Top);
 
