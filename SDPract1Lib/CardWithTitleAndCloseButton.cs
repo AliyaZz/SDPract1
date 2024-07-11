@@ -7,6 +7,30 @@ namespace SDPract1Lib
 {
     public class CardWithTitleAndCloseButton : LinearLayout
     {
+        #region Fields
+
+        Context context;
+
+        #region Internal Fields
+
+        #endregion
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region ctor
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
         public CardWithTitleAndCloseButton(Context context, string titleInput, string descriptionInput) : base(context)
         {
             Orientation = Orientation.Horizontal;

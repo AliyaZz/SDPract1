@@ -7,6 +7,29 @@ namespace SDPract1Lib
 {
     public class JustButton : Button
     {
+        #region Fields
+
+        Context context;
+
+        #region Internal Fields
+
+        #endregion
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region ctor
+
+        #endregion
+
+        #region Methods
+
+        #endregion
         public JustButton(Context context, bool isHighlighted, string buttonInput) : base(context)
         {
             Text = buttonInput;

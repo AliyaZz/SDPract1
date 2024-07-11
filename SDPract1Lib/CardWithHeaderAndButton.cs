@@ -6,6 +6,29 @@ namespace SDPract1Lib
 {
     public class CardWithHeaderAndButton : LinearLayout
     {
+        #region Fields
+
+        Context context;
+
+        #region Internal Fields
+
+        #endregion
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region ctor
+
+        #endregion
+
+        #region Methods
+
+        #endregion
         public CardWithHeaderAndButton(Context context, bool isDark, string headerInput, string subheaderInput, string buttonInput) : base(context)
         {
             Orientation = Orientation.Vertical;

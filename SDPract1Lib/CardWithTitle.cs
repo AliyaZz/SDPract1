@@ -6,6 +6,30 @@ namespace SDPract1Lib
 {
     public class CardWithTitle : LinearLayout
     {
+        #region Fields
+
+        Context context;
+
+        #region Internal Fields
+
+        #endregion
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region ctor
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
         public CardWithTitle(Context context, bool isDark, string titleInput, string descriptionInput) : base(context)
         {
             Orientation = Orientation.Horizontal;

@@ -7,6 +7,30 @@ namespace SDPract1Lib
 {
     public class ScrollableCard : LinearLayout
     {
+        #region Fields
+
+        Context context;
+
+        #region Internal Fields
+
+        #endregion
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region ctor
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
         public ScrollableCard(Context context, string topButtonInput, string headerInput, 
             List<string> titleInputs = default, List<string> subtitleInputs = default, string buttonInput = default) : base(context)
         {

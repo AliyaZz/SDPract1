@@ -1,7 +1,11 @@
 using Android.Views;
+using Android.Content;
+using Android.Widget;
 using SDPract1Lib;
-using static Android.Provider.Settings;
+using AndroidX.RecyclerView.Widget;
 using static Android.Views.ViewGroup;
+using static Android.Preferences.PreferenceActivity;
+//using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace SDPract1
 {
@@ -20,35 +24,91 @@ namespace SDPract1
             };
             linearLayout.SetClipToPadding(false);
             linearLayout.SetClipChildren(false);
+            linearLayout.SetPadding(40, 40, 40, 40);
 
             var scrollView = new ScrollView(BaseContext);
             scrollView.SetClipToPadding(false);
             scrollView.SetClipChildren(false);
-
-            linearLayout.SetPadding(40, 40, 40, 40);
-            AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
             scrollView.AddView(linearLayout);
+            scrollView.VerticalScrollBarEnabled = false;
+            AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
+
+            //var recyclerView = new RecyclerView(BaseContext);
+            //recyclerView.HorizontalScrollBarEnabled = false;
+            //recyclerView.VerticalScrollBarEnabled = true;
+
+            //recyclerView.SetClipToPadding(false);
+            //recyclerView.SetClipChildren(false);
+            //recyclerView.VerticalScrollBarEnabled = false;
+            //AddContentView(recyclerView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
+
+            //var manager = new LinearLayoutManager(this);
+            //manager.Orientation = Orientation.Vertical;
+            //recyclerView.SetLayoutManager(manager);
 
             var list = new List<View> {
-                new CardWithHeader(this, false, "Header", "Subheader"),
-                new CardWithHeader(this, true, "Header", "Subheader"),
-                new CardWithHeader(this, false, "Header", "Subheader"),
-                new CardWithHeader(this, true, "Header", "Subheader"),
+                new CardWithHeader(this)
+                {
+                    IsDark = false,
+                    Header = "Header"
+                },
+                new CardWithHeader(this)
+                {
+                    IsDark = true,
+                    Header = "Header"
+                },
+                new CardWithHeader(this)
+                {
+                    IsDark = false,
+                    Header = "Header",
+                    Subheader = "Subheader"
+                },
+                new CardWithHeader(this)
+                {
+                    IsDark = true,
+                    Header = "Header",
+                    Subheader = "Subheader"
+                },
                 new CardWithHeaderAndButton(this, false, "Header", "Subheader", "Button"),
                 new CardWithHeaderAndButton(this, true, "Header", "Subheader", "Button"),
                 new CardWithTitle(this, false, "Title", "Description"),
                 new CardWithTitle(this, true, "Title", "Description"),
                 new CardWithTitleAndCloseButton(this, "Title", "Description"),
-                new CardWithHeaderAnd4Titles(this, false, "Button", "Header", new List<string>{}, new List<string>{}, "Button"),
-                new CardWithHeaderAnd4Titles(this, true, "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}, "Button"),
-                new CardWithHeaderAnd4Titles(this, false, "Button", "Header"),
-                new CardWithHeaderAnd4Titles(this, true,  "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}),
+                new CardWithHeaderAnd4Titles(this)
+                {
+                    IsDark = false,
+                    TopButton = "Button",
+                    BottomButton = "Button",
+                    Header = "Header",
+                    Titles =  new List<string> {"Title", "Title", "Title"},
+                    Descriptions = new List<string> {"Description", "Description", "Description"}
+                },
+                new CardWithHeaderAnd4Titles(this)
+                {
+                    IsDark = true,
+                    Header = "Header"
+                },
+                new CardWithHeaderAnd4Titles(this)
+                {
+                    IsDark = false,
+                    TopButton = "Button",
+                    Titles =  new List<string> {"Title", "Title", "Title"},
+                    Descriptions = new List<string> {"Description", "Description", "Description"}
+                },
+                new CardWithHeaderAnd4Titles(this)
+                {
+                    IsDark = true,
+                    TopButton = "Button",
+                    BottomButton = "Button",
+                    Header = "Header",
+                    Titles =  new List<string> {"Title", "Title", "Title"},
+                    Descriptions = new List<string> {"Description", "Description", "Description"}
+                },
                 new ScrollableCard(this, "Button", "Header", new List<string>{}, new List<string>{}, "Button"),
-                new ScrollableCard(this, "Button", "Header", new List<string> {"Title", "Title"}, new List<string> {"Description", "Description"}, "Button"),
+                new ScrollableCard(this, "Button", "Header", new List<string> {"Title", "Title", "Title"}, new List<string> {"Description", "Description", "Description"}, "Button"),
                 new JustButton(this, false, "Button"),
                 new JustButton(this, true, "Button highlighted")
             };
-
             foreach (var item in list)
             {
                 linearLayout.AddView(item);
