@@ -5,13 +5,15 @@ using SDPract1Lib;
 using AndroidX.RecyclerView.Widget;
 using static Android.Views.ViewGroup;
 using static Android.Preferences.PreferenceActivity;
-//using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace SDPract1
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        RecyclerView recyclerView;
+        RecyclerView.LayoutManager layoutManager;
+        Adapterclass adapter;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,18 +35,17 @@ namespace SDPract1
             scrollView.VerticalScrollBarEnabled = false;
             AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
 
-            //var recyclerView = new RecyclerView(BaseContext);
-            //recyclerView.HorizontalScrollBarEnabled = false;
-            //recyclerView.VerticalScrollBarEnabled = true;
-
-            //recyclerView.SetClipToPadding(false);
-            //recyclerView.SetClipChildren(false);
-            //recyclerView.VerticalScrollBarEnabled = false;
-            //AddContentView(recyclerView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
-
-            //var manager = new LinearLayoutManager(this);
-            //manager.Orientation = Orientation.Vertical;
-            //recyclerView.SetLayoutManager(manager);
+            recyclerView = new RecyclerView(BaseContext);
+            layoutManager = new LinearLayoutManager(BaseContext);
+            recyclerView.SetLayoutManager(layoutManager);
+            recyclerView.HorizontalScrollBarEnabled = false;
+            recyclerView.VerticalScrollBarEnabled = true;
+            recyclerView.SetClipToPadding(false);
+            recyclerView.SetClipChildren(false);
+            adapter = new Adapterclass(linearLayout);
+            recyclerView.SetAdapter(adapter);
+            
+            AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
 
             var list = new List<View> {
                 new CardWithHeader(this)
