@@ -1,39 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Android.Accounts;
 using Android.Views;
-using Android.Content;
-using Android.Widget;
-using static Android.Views.ViewGroup;
 using AndroidX.RecyclerView.Widget;
 
 namespace SDPract1Lib
 {
     public class Adapterclass : RecyclerView.Adapter
     {
-        public event EventHandler<int> ItemClick;
-        public View view;
+        List<VerticalCardForRecyclerView> cards;
 
-        public Adapterclass(View view)
+        public List<VerticalCardForRecyclerView> Cards { get => cards; set => cards = value;}
+
+        public Adapterclass(List<VerticalCardForRecyclerView> cards)
         {
-            this.view = view;
+            this.cards = cards;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            ViewHolderClass viewHolderClass = holder as ViewHolderClass;
-            if (viewHolderClass != null && viewHolderClass.nameTxt != null) viewHolderClass.nameTxt.Text = view.;
-                            
+            
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            View view = LayoutInflater.From(parent.Context).Inflate( Resource.Layout.CardHorizontal, parent, false);
-            return new ViewHolderClass(view);
+            var frame = new FrameLayout(parent.Context);
+            frame.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+
+            var cardViewTitle = new VerticalCardForRecyclerView(parent.Context);
+            cardViewTitle.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            frame.AddView(cardViewTitle);
+            return new ViewHolderClass(frame);
         }
 
-        public override int ItemCount => view.;
+        public override int ItemCount => cards.Count;
     }
 }

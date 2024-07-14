@@ -11,9 +11,6 @@ namespace SDPract1
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        RecyclerView recyclerView;
-        RecyclerView.LayoutManager layoutManager;
-        Adapterclass adapter;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -35,17 +32,10 @@ namespace SDPract1
             scrollView.VerticalScrollBarEnabled = false;
             AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
 
-            recyclerView = new RecyclerView(BaseContext);
-            layoutManager = new LinearLayoutManager(BaseContext);
-            recyclerView.SetLayoutManager(layoutManager);
-            recyclerView.HorizontalScrollBarEnabled = false;
-            recyclerView.VerticalScrollBarEnabled = true;
-            recyclerView.SetClipToPadding(false);
-            recyclerView.SetClipChildren(false);
-            adapter = new Adapterclass(linearLayout);
-            recyclerView.SetAdapter(adapter);
-            
-            AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
+            var cards = new List<VerticalCardForRecyclerView>()
+            {
+                
+            };
 
             var list = new List<View> {
                 new CardWithHeader(this)
@@ -81,31 +71,45 @@ namespace SDPract1
                     TopButton = "Button",
                     BottomButton = "Button",
                     Header = "Header",
-                    Titles =  new List<string> {"Title", "Title", "Title"},
-                    Descriptions = new List<string> {"Description", "Description", "Description"}
+                    Cards = new List<VerticalCardForRecyclerView>()
+                    {
+                        new VerticalCardForRecyclerView(this)
+                        {
+                            Title = "Title",
+                            Description = "Description",
+                        },
+                        new VerticalCardForRecyclerView(this)
+                        {
+                            Title = "Title",
+                            Description = "Description",
+                        }
+                    }
                 },
-                new CardWithHeaderAnd4Titles(this)
-                {
-                    IsDark = true,
-                    Header = "Header"
-                },
-                new CardWithHeaderAnd4Titles(this)
-                {
-                    IsDark = false,
-                    TopButton = "Button",
-                    Titles =  new List<string> {"Title", "Title", "Title"},
-                    Descriptions = new List<string> {"Description", "Description", "Description"}
-                },
-                new CardWithHeaderAnd4Titles(this)
-                {
-                    IsDark = true,
-                    TopButton = "Button",
-                    BottomButton = "Button",
-                    Header = "Header",
-                    Titles =  new List<string> {"Title", "Title", "Title"},
-                    Descriptions = new List<string> {"Description", "Description", "Description"}
-                },
-                new ScrollableCard(this, "Button", "Header", new List<string>{}, new List<string>{}, "Button"),
+                //new CardWithHeaderAnd4Titles(this)
+                //{
+                //    IsDark = true,
+                //    TopButton = "Button",
+                //    BottomButton = "Button",
+                //    Header = "Header",
+                //    Cards = cards
+                //},
+                //new CardWithHeaderAnd4Titles(this)
+                //{
+                //    IsDark = false,
+                //    TopButton = "Button",
+                //    BottomButton = "Button",
+                //    Header = "Header",
+                //    Cards = cards
+                //},
+                //new CardWithHeaderAnd4Titles(this)
+                //{
+                //    IsDark = true,
+                //    TopButton = "Button",
+                //    BottomButton = "Button",
+                //    Header = "Header",
+                //    Cards = cards
+                //},
+                new ScrollableCard(this, "Button", "Header", new List<string> {"Title", "Title", "Title"}, new List<string> {"Description", "Description", "Description"}, "Button"),
                 new ScrollableCard(this, "Button", "Header", new List<string> {"Title", "Title", "Title"}, new List<string> {"Description", "Description", "Description"}, "Button"),
                 new JustButton(this, false, "Button"),
                 new JustButton(this, true, "Button highlighted")

@@ -5,6 +5,8 @@ using Android.OS;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using System.Numerics;
+using AndroidX.RecyclerView.Widget;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace SDPract1Lib
 {
@@ -25,7 +27,15 @@ namespace SDPract1Lib
         List<string> descriptionInputs;
 
         Context context;
+
+        RecyclerView recyclerView;
         
+        RecyclerView.LayoutManager layoutManager;
+        
+        Adapterclass adapter;
+
+        List<VerticalCardForRecyclerView> list;
+
         #region Internal Fields
 
         LinearLayout headerLayout;
@@ -88,29 +98,92 @@ namespace SDPract1Lib
             }
         }
 
-        public List<string> Titles
+        public List<VerticalCardForRecyclerView> Cards
         {
-            get => titleInputs;
+            get => list;
             set
             {
-                titleInputs = value;
-                UpdateTitles();
-            }
-        }
-
-        public List<string> Descriptions
-        {
-            get => descriptionInputs; 
-            set
-            {
-                descriptionInputs = value;
-                UpdateDescriptions();
+                list = value;
+                foreach (var item in list)
+                {
+                    item.IsDark = isDark;
+                }
+                UpdateList();
             }
         }
 
         #endregion
 
         #region ctor
+
+        public CardWithHeaderAnd4Titles(Context context) : base(context)
+        {
+            this.context = context;
+            SetPadding(48, 32, 48, 48);
+            Orientation = Orientation.Vertical;
+            SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
+
+            headerLayout = new LinearLayout(context);
+            headerLayout.Orientation = Orientation.Horizontal;
+            headerLayout.SetGravity(GravityFlags.Top);
+            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent, 1);
+            headerLayout.SetPadding(0, 0, 16, 0);
+
+            header = new TextView(Context);
+            header.TextSize = 20;
+            header.SetTextColor(Android.Graphics.Color.Black);
+            Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.RobotoBold);
+            header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
+            header.Visibility = ViewStates.Gone;
+
+            topButton = new Button(context);
+            Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
+            topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
+            topButton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+            topButton.Text = topButtonInput;
+            topButton.Gravity = GravityFlags.Right;
+            topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
+            topButton.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
+            topButton.Visibility = ViewStates.Gone;
+
+            headerLayout.AddView(header);
+            headerLayout.AddView(topButton);
+
+            recyclerView = new RecyclerView(context);
+            layoutManager = new LinearLayoutManager(context, LinearLayoutManager.Vertical, false);
+            recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+
+            recyclerView.SetLayoutManager(layoutManager);
+            recyclerView.HorizontalScrollBarEnabled = false;
+            recyclerView.VerticalScrollBarEnabled = false;
+            recyclerView.SetClipToPadding(false);
+            recyclerView.SetClipChildren(false);
+
+            layoutOfTextLayouts = new LinearLayout(context);
+            layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            layoutOfTextLayouts.Orientation = Orientation.Vertical;
+            layoutOfTextLayouts.AddView(recyclerView);
+
+            AddView(headerLayout);
+            AddView(layoutOfTextLayouts);
+
+            buttonLayout = new LinearLayout(context);
+            buttonLayout.SetPadding(0, 50, 0, 0);
+            buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+
+            button = new Button(context);
+            button.Text = buttonInput;
+            button.Typeface = typeface1;
+            button.TextSize = 14;
+            button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
+            button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+            button.SetBackgroundResource(Resource.Drawable.buttons);
+
+            buttonLayout.AddView(button);
+            AddView(buttonLayout);
+
+            buttonLayout.Visibility = ViewStates.Gone;
+        }
 
         #endregion
 
@@ -147,188 +220,13 @@ namespace SDPract1Lib
             buttonLayout.Visibility = ViewStates.Visible;
         }
 
-        void UpdateTitles()
+        void UpdateList()
         {
-            textLayouts = new List<LinearLayout>();
-            imageLayouts = new List<LinearLayout>();
-            titles = new List<TextView>();
-            blockLayouts = new List<LinearLayout>();
-
-            layoutOfTextLayouts = new LinearLayout(context);
-
-            Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
-
-            for (int i = 0; i < titleInputs.Count; i++)
-            {
-                textLayouts.Add(new LinearLayout(context)
-                {
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent),
-                    Orientation = Orientation.Vertical
-                });
-                imageLayouts.Add(new LinearLayout(context)
-                {
-                    Orientation = Orientation.Vertical,
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-                });
-                imageLayouts[i].SetPadding(0, 0, 32, 0);
-                imageView = new ImageView(context);
-                imageView.SetImageResource(Resource.Drawable.starblue);
-                imageLayouts[i].AddView(imageView);
-                titles.Add(new TextView(context)
-                {
-                    Text = titleInputs[i],
-                    TextSize = 16,
-                    Typeface = typeface1
-                });
-                titles[i].SetTextColor(Android.Graphics.Color.Black);
-                textLayouts[i].AddView(titles[i]);
-
-                if (descriptionInputs != null && (!string.IsNullOrEmpty(descriptionInputs[i])))
-                {
-                    textLayouts[i].RemoveView(descriptions[i]);
-                }
-
-                blockLayouts.Add(new LinearLayout(context)
-                {
-                    Orientation = Orientation.Horizontal,
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent)
-                });
-                blockLayouts[i].SetPadding(0, 0, 0, 50);
-                blockLayouts[i].SetGravity(GravityFlags.CenterVertical);
-                if (i == titleInputs.Count - 1)
-                {
-                    blockLayouts[i].SetPadding(0, 0, 0, 0);
-                }
-                blockLayouts[i].AddView(imageLayouts[i]);
-                blockLayouts[i].AddView(textLayouts[i]);
-
-                layoutOfTextLayouts.AddView(blockLayouts[i]);
-            }
-        }
-
-        void UpdateDescriptions()
-        {
-            textLayouts = new List<LinearLayout>();
-            imageLayouts = new List<LinearLayout>();
-            descriptions = new List<TextView>();
-            blockLayouts = new List<LinearLayout>();
-            layoutOfTextLayouts = new LinearLayout(context);
-
-            Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
-
-            for (int i = 0; i < descriptionInputs.Count; i++)
-            {
-                textLayouts.Add(new LinearLayout(context)
-                {
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent),
-                    Orientation = Orientation.Vertical
-                });
-                imageLayouts.Add(new LinearLayout(context)
-                {
-                    Orientation = Orientation.Vertical,
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-                });
-                imageLayouts[i].SetPadding(0, 0, 32, 0);
-                imageView = new ImageView(context);
-                imageView.SetImageResource(Resource.Drawable.starblue);
-                imageLayouts[i].AddView(imageView);
-
-                if (titleInputs != null && !string.IsNullOrEmpty(titleInputs[i]))
-                {
-                    textLayouts[i].RemoveView(titles[i]);
-                }
-
-                descriptions.Add(new TextView(context)
-                {
-                    Text = descriptionInputs[i],
-                    TextSize = 14,
-                    Typeface = typeface1
-                });
-                descriptions[i].SetTextColor(Android.Graphics.Color.Gray);
-                descriptions[i].SetPadding(0, 8, 0, 0);
-                textLayouts[i].AddView(descriptions[i]);
-
-                blockLayouts.Add(new LinearLayout(context)
-                {
-                    Orientation = Orientation.Horizontal,
-                    LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent)
-                });
-                blockLayouts[i].SetPadding(0, 0, 0, 50);
-                blockLayouts[i].SetGravity(GravityFlags.CenterVertical);
-                if (i == descriptionInputs.Count - 1)
-                {
-                    blockLayouts[i].SetPadding(0, 0, 0, 0);
-                }
-                blockLayouts[i].AddView(imageLayouts[i]);
-                blockLayouts[i].AddView(textLayouts[i]);
-
-                layoutOfTextLayouts.AddView(blockLayouts[i]);
-            }
+            adapter = new Adapterclass(list);
+            recyclerView.SetAdapter(adapter); 
         }
 
         #endregion
-        public CardWithHeaderAnd4Titles(Context context) : base(context)
-        {
-            this.context = context;
-            SetPadding(48, 32, 48, 48);
-            Orientation = Orientation.Vertical;
-            SetGravity(GravityFlags.Top | GravityFlags.CenterHorizontal);
-
-            headerLayout = new LinearLayout(context);
-            headerLayout.Orientation = Orientation.Horizontal;
-            headerLayout.SetGravity(GravityFlags.Top);
-            headerLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent, 1);
-            headerLayout.SetPadding(0, 0, 16, 0);
-
-            header = new TextView(Context);
-            header.TextSize = 20;
-            header.SetTextColor(Android.Graphics.Color.Black);
-            Android.Graphics.Typeface typeface2 = Resources.GetFont(Resource.Font.RobotoBold);
-            header.SetTypeface(typeface2, Android.Graphics.TypefaceStyle.Bold);
-            header.Visibility = ViewStates.Gone;
-
-            topButton = new Button(context);
-            Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
-            topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
-            topButton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            topButton.Text = topButtonInput;
-            topButton.Gravity = GravityFlags.Right;
-            topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
-            topButton.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
-            topButton.Visibility = ViewStates.Gone;
-
-            headerLayout.AddView(header);
-            headerLayout.AddView(topButton);
-
-            textLayouts = new List<LinearLayout>();
-            imageLayouts = new List<LinearLayout>();
-            titles = new List<TextView>();
-            descriptions = new List<TextView>();
-            blockLayouts = new List<LinearLayout>();
-
-            layoutOfTextLayouts = new LinearLayout(context);
-            layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
-            layoutOfTextLayouts.Orientation = Orientation.Vertical;
-            
-            AddView(headerLayout);
-            AddView(layoutOfTextLayouts);
-
-            buttonLayout = new LinearLayout(context);
-            buttonLayout.SetPadding(0, 50, 0, 0);
-            buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-
-            button = new Button(context);
-            button.Text = buttonInput;
-            button.Typeface = typeface1;
-            button.TextSize = 14;
-            button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-            button.SetBackgroundResource(Resource.Drawable.buttons);
-
-            buttonLayout.AddView(button);
-            AddView(buttonLayout);
-            
-            buttonLayout.Visibility = ViewStates.Gone;
-        }
+        
     }
 }

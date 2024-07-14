@@ -12,12 +12,10 @@ namespace SDPract1Lib
 {
     public class ViewHolderClass : RecyclerView.ViewHolder
     {
-        public TextView nameTxt;
-        public ImageView imageView;
+        public VerticalCardForRecyclerView Custom { get; set; }
         public ViewHolderClass (View view): base (view)
         {
-            nameTxt = view.FindViewById<TextView>(Resource.Id.nameTxt);
-            imageView = view.FindViewById<ImageView>(Resource.Id.imageView);
+
         }
     }
 }
