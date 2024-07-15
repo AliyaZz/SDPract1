@@ -78,7 +78,12 @@ namespace SDPract1Lib
 
         public string BottomButton
         {
-            get => buttonInput; set => button.ButtonInput = value;
+            get => buttonInput;
+            set
+            {
+                button.ButtonInput = value;
+                buttonLayout.Visibility = ViewStates.Visible;
+            }
         }
 
         public List<string> Titles
@@ -191,7 +196,7 @@ namespace SDPract1Lib
             else
             {
                 layoutManager = new LinearLayoutManager(context, LinearLayoutManager.Vertical, false);
-                recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, 400);
+                recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, 700);
             }
 
             recyclerView.SetLayoutManager(layoutManager);

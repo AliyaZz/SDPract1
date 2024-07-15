@@ -1,6 +1,9 @@
 ﻿using Android.Content;
 using Android.Views;
 using Android.Content.Res;
+using Java.Lang;
+using Android.Widget;
+using Android.Views.Animations;
 
 namespace SDPract1Lib
 {
@@ -31,7 +34,6 @@ namespace SDPract1Lib
             {
                 buttonInput = value;
                 Text = value;
-                Visibility = ViewStates.Visible;
             }
         }
 
@@ -53,10 +55,11 @@ namespace SDPract1Lib
 
         #region Events
 
-        private void Button_Click(object? sender, EventArgs e)
+        private async void Button_Click(object sender, EventArgs e)
         {
-            Button button = sender as Button;
-            button.SetBackgroundResource(Resource.Drawable.buttonhighlighted);
+            SetBackgroundResource(Resource.Drawable.buttonhighlighted);
+            await Task.Delay(100);
+            SetBackgroundResource(Resource.Drawable.buttons);
         }
 
         #endregion
