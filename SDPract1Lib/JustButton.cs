@@ -1,9 +1,6 @@
 ﻿using Android.Content;
 using Android.Views;
 using Android.Content.Res;
-using Java.Lang;
-using Android.Widget;
-using Android.Views.Animations;
 
 namespace SDPract1Lib
 {
