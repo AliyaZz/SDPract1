@@ -1,18 +1,15 @@
-﻿using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Views;
-using Android.OS;
-using Android.Graphics;
 using Android.Graphics.Drawables;
-using System.Numerics;
 using AndroidX.RecyclerView.Widget;
-using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace SDPract1Lib
 {
-    public class CardWithHeaderAnd4Titles : LinearLayout
+    public class RecyclerViewCard : LinearLayout
     {
         #region Fields
+
+        bool isHorizontal;
 
         bool isDark;
 
@@ -34,7 +31,7 @@ namespace SDPract1Lib
         
         Adapterclass adapter;
 
-        List<VerticalCardForRecyclerView> list;
+        JustButton button;
 
         #region Internal Fields
 
@@ -42,31 +39,21 @@ namespace SDPract1Lib
 
         LinearLayout buttonLayout;
 
-        LinearLayout layoutOfTextLayouts;
-
         TextView header;
 
         Button topButton;
-
-        Button button;
-
-        List<LinearLayout> textLayouts;
-
-        List<LinearLayout> imageLayouts;
-
-        List<TextView> titles;
-
-        List<TextView> descriptions;
-
-        List<LinearLayout> blockLayouts;
-
-        ImageView imageView;
 
         #endregion
 
         #endregion
 
         #region Properties
+
+        public bool IsHorizontal
+        {
+            get => isHorizontal;
+            set => isHorizontal = value;
+        }
 
         public bool IsDark {  get => isDark; set
             {
@@ -91,32 +78,32 @@ namespace SDPract1Lib
 
         public string BottomButton
         {
-            get => buttonInput; set
+            get => buttonInput; set => button.ButtonInput = value;
+        }
+
+        public List<string> Titles
+        {
+            get => titleInputs; set
             {
-                buttonInput = value;
-                UpdateButton();
+                titleInputs = value;
             }
         }
 
-        public List<VerticalCardForRecyclerView> Cards
+        public List<string> Descriptions
         {
-            get => list;
-            set
+            get => descriptionInputs; set
             {
-                list = value;
-                foreach (var item in list)
-                {
-                    item.IsDark = isDark;
-                }
+                descriptionInputs = value;
                 UpdateList();
             }
         }
+
 
         #endregion
 
         #region ctor
 
-        public CardWithHeaderAnd4Titles(Context context) : base(context)
+        public RecyclerViewCard(Context context) : base(context)
         {
             this.context = context;
             SetPadding(48, 32, 48, 48);
@@ -140,7 +127,6 @@ namespace SDPract1Lib
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
             topButton.SetTypeface(typeface1, Android.Graphics.TypefaceStyle.Bold);
             topButton.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            topButton.Text = topButtonInput;
             topButton.Gravity = GravityFlags.Right;
             topButton.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
             topButton.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
@@ -150,34 +136,15 @@ namespace SDPract1Lib
             headerLayout.AddView(topButton);
 
             recyclerView = new RecyclerView(context);
-            layoutManager = new LinearLayoutManager(context, LinearLayoutManager.Vertical, false);
-            recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-
-            recyclerView.SetLayoutManager(layoutManager);
-            recyclerView.HorizontalScrollBarEnabled = false;
-            recyclerView.VerticalScrollBarEnabled = false;
-            recyclerView.SetClipToPadding(false);
-            recyclerView.SetClipChildren(false);
-
-            layoutOfTextLayouts = new LinearLayout(context);
-            layoutOfTextLayouts.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
-            layoutOfTextLayouts.Orientation = Orientation.Vertical;
-            layoutOfTextLayouts.AddView(recyclerView);
 
             AddView(headerLayout);
-            AddView(layoutOfTextLayouts);
+            AddView(recyclerView);
 
             buttonLayout = new LinearLayout(context);
             buttonLayout.SetPadding(0, 50, 0, 0);
             buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
 
-            button = new Button(context);
-            button.Text = buttonInput;
-            button.Typeface = typeface1;
-            button.TextSize = 14;
-            button.SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
-            button.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-            button.SetBackgroundResource(Resource.Drawable.buttons);
+            button = new JustButton(context);
 
             buttonLayout.AddView(button);
             AddView(buttonLayout);
@@ -187,7 +154,7 @@ namespace SDPract1Lib
 
         #endregion
 
-        #region Methods
+        #region Private methods
 
         void UpdateDark()
         {
@@ -214,15 +181,23 @@ namespace SDPract1Lib
             topButton.Visibility = ViewStates.Visible;
         }
 
-        void UpdateButton()
-        {
-            button.Text = topButtonInput;
-            buttonLayout.Visibility = ViewStates.Visible;
-        }
-
         void UpdateList()
         {
-            adapter = new Adapterclass(list);
+            if (isHorizontal)
+            {
+                layoutManager = new LinearLayoutManager(context, LinearLayoutManager.Horizontal, false);
+                recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+            }
+            else
+            {
+                layoutManager = new LinearLayoutManager(context, LinearLayoutManager.Vertical, false);
+                recyclerView.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, 400);
+            }
+
+            recyclerView.SetLayoutManager(layoutManager);
+            adapter = new Adapterclass(isHorizontal, isDark);
+            adapter.TitleInputs = titleInputs;
+            adapter.DescriptionInputs = descriptionInputs;
             recyclerView.SetAdapter(adapter); 
         }
 

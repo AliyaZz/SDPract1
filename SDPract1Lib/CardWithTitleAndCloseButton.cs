@@ -1,7 +1,5 @@
-﻿using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Views;
-using Android.OS;
 
 namespace SDPract1Lib
 {
@@ -9,29 +7,55 @@ namespace SDPract1Lib
     {
         #region Fields
 
-        Context context;
+        string titleInput;
 
-        #region Internal Fields
+        string descriptionInput;
 
-        #endregion
+        LinearLayout textLayout;
+
+        LinearLayout imageLayout;
+
+        LinearLayout layoutToMakeButtonHigher;
+
+        LinearLayout buttonLayout;
+
+        TextView title;
+
+        TextView description;
+
+        Button closeButton;
+
+        ImageView image;
 
         #endregion
 
         #region Properties
 
+        public string Title
+        {
+            get => titleInput;
+            set
+            {
+                titleInput = value;
+                UpdateTitle();
+            }
+        }
 
+        public string Description
+        {
+            get => descriptionInput;
+            set
+            {
+                descriptionInput = value;
+                UpdateDescription();
+            }
+        }
 
         #endregion
 
         #region ctor
 
-        #endregion
-
-        #region Methods
-
-        #endregion
-
-        public CardWithTitleAndCloseButton(Context context, string titleInput, string descriptionInput) : base(context)
+        public CardWithTitleAndCloseButton(Context context) : base(context)
         {
             Orientation = Orientation.Horizontal;
             SetPadding(48, 48, 48, 48);
@@ -39,46 +63,46 @@ namespace SDPract1Lib
             Elevation = 40;
             SetGravity(GravityFlags.CenterVertical | GravityFlags.CenterHorizontal);
 
-            var textLayout = new LinearLayout(context);
+            textLayout = new LinearLayout(context);
             textLayout.Orientation = Orientation.Vertical;
             textLayout.LayoutParameters = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WrapContent, 1);
 
-            var title = new TextView(Context);
-            title.Text = titleInput;
+            title = new TextView(Context);
             title.TextSize = 16;
             title.SetTextColor(Android.Graphics.Color.Black);
             Android.Graphics.Typeface typeface1 = Resources.GetFont(Resource.Font.Roboto);
             title.Typeface = typeface1;
+            title.Visibility = ViewStates.Gone;
 
-            var description = new TextView(Context);
-            description.Text = descriptionInput;
+            description = new TextView(Context);
             description.TextSize = 14;
             description.SetTextColor(Android.Graphics.Color.Gray);
             description.SetPadding(0, 8, 0, 0);
             description.Typeface = typeface1;
+            description.Visibility = ViewStates.Gone;
 
             textLayout.AddView(title);
             textLayout.AddView(description);
 
-            var imageLayout = new LinearLayout(context);
+            imageLayout = new LinearLayout(context);
             imageLayout.Orientation = Orientation.Vertical;
             imageLayout.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
             imageLayout.SetPadding(0, 0, 32, 0);
 
-            var image = new ImageView(context);
+            image = new ImageView(context);
             image.SetImageResource(Resource.Drawable.starblue);
 
             imageLayout.AddView(image);
 
-            var layoutToMakeButtonHigher = new LinearLayout(context);
+            layoutToMakeButtonHigher = new LinearLayout(context);
             layoutToMakeButtonHigher.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
             layoutToMakeButtonHigher.SetVerticalGravity(GravityFlags.Top);
 
-            var buttonLayout = new LinearLayout(context);
+            buttonLayout = new LinearLayout(context);
             buttonLayout.Orientation = Orientation.Horizontal;
             buttonLayout.LayoutParameters = new LinearLayout.LayoutParams(64, 64);
-            
-            var closeButton = new Button(context);
+
+            closeButton = new Button(context);
             closeButton.SetBackgroundResource(Resource.Drawable.closebutton);
             buttonLayout.AddView(closeButton);
 
@@ -88,5 +112,23 @@ namespace SDPract1Lib
             AddView(textLayout);
             AddView(layoutToMakeButtonHigher);
         }
+
+        #endregion
+
+        #region Private methods
+
+        void UpdateTitle()
+        {
+            title.Text = titleInput;
+            title.Visibility = ViewStates.Visible;
+        }
+
+        void UpdateDescription()
+        {
+            description.Text = descriptionInput;
+            description.Visibility = ViewStates.Visible;
+        }
+
+        #endregion
     }
 }

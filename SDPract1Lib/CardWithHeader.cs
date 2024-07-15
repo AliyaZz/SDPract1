@@ -1,7 +1,5 @@
-﻿using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Views;
-using Android.Hardware;
 
 namespace SDPract1Lib
 {
@@ -17,8 +15,6 @@ namespace SDPract1Lib
 
         Context context;
 
-        #region Internal Fields
-
         LinearLayout textLayout;
 
         TextView header;
@@ -26,8 +22,6 @@ namespace SDPract1Lib
         TextView subheader;
 
         ImageView image;
-
-        #endregion
 
         #endregion
 
@@ -95,7 +89,7 @@ namespace SDPract1Lib
 
         #endregion
 
-        #region Methods
+        #region Private methods
 
         void UpdateDark()
         {
