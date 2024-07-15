@@ -64,7 +64,12 @@ namespace SDPract1Lib
 
         public string BottomButton
         {
-            get => buttonInput; set => button.ButtonInput = value;
+            get => buttonInput; 
+            set 
+            {
+                button.ButtonInput = value;
+                buttonLayout.Visibility = ViewStates.Visible;
+            } 
         }
 
         #endregion

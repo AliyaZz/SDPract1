@@ -133,13 +133,12 @@ namespace SDPract1
                     IsDark = false,
                     IsHorizontal = true,
                     TopButton = "Button",
-                    BottomButton = "Button",
                     Header = "Header",
                     Titles = new List<string>{"Title", "Title", "Title", "Title", "Title",},
                     Descriptions = new List<string> { "Subtitle", "Subtitle", "Subtitle", "Subtitle", "Subtitle", }
                 },
                 new RecyclerViewCard(this){
-                    IsDark = true,
+                    IsDark = false,
                     IsHorizontal = true,
                     TopButton = "Button",
                     BottomButton = "Button",
