@@ -45,18 +45,23 @@ namespace SDPract1Lib
             TextSize = 14;
             SetTextColor(Android.Graphics.Color.Rgb(66, 139, 249));
             SetBackgroundResource(Resource.Drawable.buttons);
-            Click += Button_Click;
+            Touch += Button_Click;
         }
 
         #endregion
 
         #region Events
 
-        private async void Button_Click(object sender, EventArgs e)
+        private async void Button_Click(object sender, TouchEventArgs e)
         {
-            SetBackgroundResource(Resource.Drawable.buttonhighlighted);
-            await Task.Delay(100);
-            SetBackgroundResource(Resource.Drawable.buttons);
+            if (e.Event.Action == MotionEventActions.Up || e.Event.Action == MotionEventActions.Cancel)
+            {
+                SetBackgroundResource(Resource.Drawable.buttons);
+            }
+            if (e.Event.Action == MotionEventActions.Down)
+            {
+                SetBackgroundResource(Resource.Drawable.buttonhighlighted);
+            }
         }
 
         #endregion

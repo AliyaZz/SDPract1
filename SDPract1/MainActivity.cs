@@ -1,38 +1,46 @@
 using Android.Views;
-using Android.Content;
-using Android.Widget;
 using SDPract1Lib;
-using AndroidX.RecyclerView.Widget;
 using static Android.Views.ViewGroup;
-using static Android.Preferences.PreferenceActivity;
 
 namespace SDPract1
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        #region Fields
+
+        LinearLayout mainLayout;
+
+        ScrollView scrollView;
+
+        List<CardForRecyclerView> cards;
+
+        #endregion
+
+        #region Overriden methods
+
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
             ActionBar.Hide();
 
-            var linearLayout = new LinearLayout(BaseContext)
+            mainLayout = new LinearLayout(BaseContext)
             {
                 Orientation = Orientation.Vertical
             };
-            linearLayout.SetClipToPadding(false);
-            linearLayout.SetClipChildren(false);
-            linearLayout.SetPadding(40, 40, 40, 40);
+            mainLayout.SetClipToPadding(false);
+            mainLayout.SetClipChildren(false);
+            mainLayout.SetPadding(40, 40, 40, 40);
 
-            var scrollView = new ScrollView(BaseContext);
+            scrollView = new ScrollView(BaseContext);
             scrollView.SetClipToPadding(false);
             scrollView.SetClipChildren(false);
-            scrollView.AddView(linearLayout);
+            scrollView.AddView(mainLayout);
             scrollView.VerticalScrollBarEnabled = false;
             AddContentView(scrollView, new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent));
 
-            var cards = new List<CardForRecyclerView>()
+            cards = new List<CardForRecyclerView>()
             {
                 
             };
@@ -149,12 +157,14 @@ namespace SDPract1
             };
             foreach (var item in list)
             {
-                linearLayout.AddView(item);
-                linearLayout.AddView(new Space(this)
+                mainLayout.AddView(item);
+                mainLayout.AddView(new Space(this)
                 {
                     LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, 40)
                 });
             }
         }
+
+        #endregion
     }
 }
